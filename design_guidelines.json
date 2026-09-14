@@ -1,0 +1,297 @@
+{
+  "app_name": "Waste2Earn",
+  "personality": "4 Tactile / Playful LIGHT",
+  "personality_one_liner": "A friendly, rewarding, and gamified experience that turns eco-conscious actions into tangible fintech rewards.",
+  "color": {
+    "surface": "#FFFFFF",
+    "onSurface": "#064E3B",
+    "surfaceSecondary": "#F0FDF4",
+    "onSurfaceSecondary": "#065F46",
+    "surfaceTertiary": "#DCFCE7",
+    "onSurfaceTertiary": "#064E3B",
+    "surfaceInverse": "#064E3B",
+    "onSurfaceInverse": "#FFFFFF",
+    "brand": "#22C55E",
+    "brandPrimary": "#16A34A",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#15803D",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#BBF7D0",
+    "onBrandTertiary": "#064E3B",
+    "success": "#10B981",
+    "onSuccess": "#FFFFFF",
+    "warning": "#F59E0B",
+    "onWarning": "#FFFFFF",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#E2E8F0",
+    "borderStrong": "#94A3B8",
+    "divider": "#F1F5F9",
+    "muted": "#64748B",
+    "onBrand": "#FFFFFF"
+  },
+  "theme_palettes": {
+    "Green": {
+      "background": "#FFFFFF",
+      "surface": "#F0FDF4",
+      "card": "#FFFFFF",
+      "primary": "#16A34A",
+      "secondary": "#BBF7D0",
+      "textPrimary": "#064E3B",
+      "textSecondary": "#065F46",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "border": "#E2E8F0",
+      "navigationSelected": "#16A34A",
+      "navigationUnselected": "#94A3B8",
+      "gradientHero": ["#22C55E", "#15803D"]
+    },
+    "Blue": {
+      "background": "#FFFFFF",
+      "surface": "#F0F9FF",
+      "card": "#FFFFFF",
+      "primary": "#0284C7",
+      "secondary": "#BAE6FD",
+      "textPrimary": "#082F49",
+      "textSecondary": "#0C4A6E",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "border": "#E0F2FE",
+      "navigationSelected": "#0284C7",
+      "navigationUnselected": "#94A3B8",
+      "gradientHero": ["#38BDF8", "#0369A1"]
+    },
+    "Dark": {
+      "background": "#121212",
+      "surface": "#1E293B",
+      "card": "#0F172A",
+      "primary": "#4ADE80",
+      "secondary": "#166534",
+      "textPrimary": "#F8FAFC",
+      "textSecondary": "#94A3B8",
+      "success": "#34D399",
+      "warning": "#FBBF24",
+      "error": "#F87171",
+      "border": "#334155",
+      "navigationSelected": "#4ADE80",
+      "navigationUnselected": "#64748B",
+      "gradientHero": ["#14532D", "#064E3B"]
+    },
+    "Pastel": {
+      "background": "#FFFAF0",
+      "surface": "#FEF3C7",
+      "card": "#FFFFFF",
+      "primary": "#F59E0B",
+      "secondary": "#FDE68A",
+      "textPrimary": "#78350F",
+      "textSecondary": "#92400E",
+      "success": "#34D399",
+      "warning": "#FBBF24",
+      "error": "#F87171",
+      "border": "#FDE047",
+      "navigationSelected": "#F59E0B",
+      "navigationUnselected": "#D6D3D1",
+      "gradientHero": ["#FCD34D", "#D97706"]
+    }
+  },
+  "status_badges": {
+    "Analyzed": { "bg": "#DBEAFE", "text": "#1E3A8A" },
+    "Pending": { "bg": "#FEF3C7", "text": "#92400E" },
+    "Pickup Scheduled": { "bg": "#E0E7FF", "text": "#3730A3" },
+    "Verified": { "bg": "#DCFCE7", "text": "#166534" },
+    "Credited": { "bg": "#D1FAE5", "text": "#065F46" },
+    "Unsupported": { "bg": "#FEE2E2", "text": "#991B1B" }
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Nunito",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Use generous tactile padding. Cards must never sit flush to the screen edge; always use md or lg outer margins. Ensure touch targets are at least 44x44pt.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": 2,
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": true,
+    "do's": [
+      "Use glass for the bottom tab bar where content scrolls behind.",
+      "Use glass for floating action buttons or sticky bottom CTAs.",
+      "Use a frosted overlay for text placed over the hero background image."
+    ],
+    "dont's": [
+      "Do not apply glass to metric cards or standard list rows.",
+      "Do not use glass if the device is a low-end Android (fallback to solid surfaceSecondary)."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Home",
+      "purpose": "Dashboard showing metrics, goals, and quick actions, with a prominent hero banner and theme selector.",
+      "states": {
+        "loading": "Centered spinner with 'Loading your impact...'",
+        "empty": "No data yet. Show a friendly prompt to 'Scan your first item!'",
+        "error": "Failed to load dashboard. Provide a 'Retry' button."
+      },
+      "layout": "Top Header: Logo, Wallet Balance chip (₹), Theme Toggle (Green/Blue/Dark/Pastel swatches). Hero Banner: Rounded card with gradient background, 'Turn Your Waste into Rewards 🌱', Upload Waste CTA, and carousel dots. Section: 'How it works' 3 numbered steps with arrows. Section: 3 Metric cards (Total kg, ₹, CO2) in a wrapping flex layout. Section: Monthly Goal progress bar. Bottom Nav: Home, Upload, Rewards, Recycler, Profile."
+    },
+    {
+      "name": "Upload Scan",
+      "purpose": "Entry point for AI waste scanning via Camera or Gallery.",
+      "states": {
+        "loading": "N/A",
+        "empty": "N/A",
+        "error": "Camera permission denied error with button to open settings."
+      },
+      "layout": "Pre-flight instructions on top. Two large tactile cards filling horizontal space: 'Take Photo' (Camera icon) and 'Choose from Gallery' (Image icon). Keep layout airy."
+    },
+    {
+      "name": "Analysis Result",
+      "purpose": "AI preview and detailed breakdown of scanned waste.",
+      "states": {
+        "loading": "Skeleton UI over the analysis rows, pulsing 'Analyzing waste...'",
+        "empty": "N/A",
+        "error": "Image not recognized. 'Please retake photo' CTA."
+      },
+      "layout": "Top: Thumbnail of scanned item. Middle: Status badge ('Recyclable'), Detected Material tag, Quantity/Weight input row, Estimated ₹ Value row. Bottom: Sticky 'Add to Wallet (Pending)' CTA pinned to the bottom over a glassmorphism base."
+    },
+    {
+      "name": "Find Recycler",
+      "purpose": "Map visual and nearby recycler list.",
+      "states": {
+        "loading": "Map skeleton loading state.",
+        "empty": "No recyclers found nearby. 'Adjust radius' CTA.",
+        "error": "Location access denied. 'Enable location' CTA."
+      },
+      "layout": "Top half: Map-like visual. Bottom half: Scrollable list of Recycler cards showing name, rating, and distance. Cards have a 'Schedule Pickup' CTA."
+    },
+    {
+      "name": "Schedule Pickup",
+      "purpose": "Date and time selection for pickup.",
+      "states": {
+        "loading": "Loading available slots...",
+        "empty": "N/A",
+        "error": "Failed to book. 'Try again' CTA."
+      },
+      "layout": "Top: Summary of selected recycler. Middle: Horizontal scroll view for Date chips, followed by Time-slot chips. Bottom: Sticky 'Confirm Pickup' CTA."
+    },
+    {
+      "name": "Pickup QR & Verify",
+      "purpose": "Generates and simulates scanning of pickup QR.",
+      "states": {
+        "loading": "Generating QR code...",
+        "empty": "N/A",
+        "error": "QR generation failed. 'Retry' CTA."
+      },
+      "layout": "Center: Large QR code in a rounded white card. Below: Pickup ID text and 'Download QR' text link. Bottom: 'Simulate Recycler Scan' button (for demo mode)."
+    },
+    {
+      "name": "Rewards Credited",
+      "purpose": "Celebration screen detailing earnings.",
+      "states": {
+        "loading": "N/A",
+        "empty": "N/A",
+        "error": "N/A"
+      },
+      "layout": "Full screen success state. Animated confetti. Large success checkmark. Bold total ₹ earned. Breakdown list showing Base Value and Platform Commission. 'Back to Home' primary CTA."
+    },
+    {
+      "name": "Wallet",
+      "purpose": "Financial ledger and balance.",
+      "states": {
+        "loading": "Loading ledger...",
+        "empty": "Empty wallet illustration. 'Start recycling to earn' CTA.",
+        "error": "Failed to fetch transactions. 'Retry' CTA."
+      },
+      "layout": "Top: Large Hero Green gradient Balance card. Middle: Row with 'Pending' and 'Total Earned' summary tiles. Bottom: List of recent transactions with amount, date, and +/- indicators."
+    },
+    {
+      "name": "Activity",
+      "purpose": "History of recent scans and their status.",
+      "states": {
+        "loading": "Loading history...",
+        "empty": "Empty cardboard box illustration. 'No recent scans' CTA.",
+        "error": "Failed to load history."
+      },
+      "layout": "Top: Filter chip row (All, Analyzed, Pending, Pickup). Body: List rows of scans, each showing a thumbnail, date, name, and colored Status Badge mapped to our defined status_badges."
+    },
+    {
+      "name": "Profile",
+      "purpose": "User settings and demo config.",
+      "states": {
+        "loading": "Loading profile...",
+        "empty": "N/A",
+        "error": "Failed to load profile."
+      },
+      "layout": "Top: User Avatar (initials or Google photo) + Name/Email. Body: Menu rows with icons (Settings, Notifications, Theme Selector, Recycler Demo View toggle). Bottom: Logout button."
+    }
+  ],
+  "images": {
+    "hero_nature": {
+      "url": "https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwyfHxzdXN0YWluYWJpbGl0eSUyMG5hdHVyZXxlbnwwfHx8fDE3ODk0MDE1NjJ8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Green leaf representing sustainability for hero card background"
+    },
+    "empty_wallet": {
+      "url": "https://images.pexels.com/photos/8515596/pexels-photo-8515596.jpeg",
+      "alt": "Empty wallet symbolizing no transactions yet"
+    },
+    "empty_recent_scans": {
+      "url": "https://images.pexels.com/photos/12492301/pexels-photo-12492301.jpeg",
+      "alt": "Recycling area filled with cardboard for empty states"
+    }
+  },
+  "haptics": {
+    "primary_button_press": "impactLight",
+    "theme_switch": "impactMedium",
+    "qr_scan_success": "notificationSuccess",
+    "reward_credited": "notificationSuccess",
+    "tab_switch": "selection"
+  },
+  "instructions_to_main_agent": [
+    "CRITICAL: The app must support 4 dynamic themes (Green, Blue, Dark, Pastel). Implement a React Context or Zustand store that holds the active theme and provides the tokens mapped in `theme_palettes`. Default is Green.",
+    "CRITICAL: All 4 themes must map to semantic keys (`background`, `surface`, `card`, `primary`, `secondary`, `textPrimary`, `textSecondary`, `border`, `navigationSelected`, `navigationUnselected`, `gradientHero`) so components can automatically adapt when the theme switches.",
+    "For the Dark theme, ensure text contrast is strictly maintained by using `textPrimary: #F8FAFC` against `background: #121212` and `surface: #1E293B`. Do not use pure black for cards to prevent harsh contrast fatigue.",
+    "Apply the `status_badges` color mapping strictly to the Status Badges in the Recent Scans list and Analysis Results. Render them as small pills with `bg` background and `text` color.",
+    "Use Phosphor icons consistently. Ensure empty states use oversized (48pt) Phosphor icons if the provided images don't perfectly fit the layout.",
+    "For the 'Turn Your Waste into Rewards' Hero Banner, apply a vertical gradient using the active theme's `gradientHero` tokens over the card, optionally overlaying the `hero_nature` image with a dark scrim to ensure white text readability.",
+    "Implement sticky CTAs (like 'Confirm Pickup' or 'Add to Wallet') inside a KeyboardAvoidingView with a bottom safe area and a top fade-shadow or glass effect, so they remain accessible regardless of scroll position.",
+    "Include subtle haptics on theme toggle and primary actions.",
+    "Add the 'Simulate Recycler Scan' button purely as a demo mechanic to advance the QR verification state to the Reward Credited screen."
+  ]
+}
