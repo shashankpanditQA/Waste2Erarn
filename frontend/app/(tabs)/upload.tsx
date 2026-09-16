@@ -15,11 +15,11 @@ export default function Upload() {
   const router = useRouter();
   const { show } = useToast();
 
-  const goPreview = (asset: ImagePicker.ImagePickerAsset) => {
+  const goPreview = (asset: ImagePicker.ImagePickerAsset, source: "camera" | "gallery" = "gallery") => {
     const isPng = (asset.mimeType || "").includes("png") || (asset.fileName || "").toLowerCase().endsWith(".png");
     const type = isPng ? "image/png" : "image/jpeg";
     const name = asset.fileName || `waste.${isPng ? "png" : "jpg"}`;
-    router.push({ pathname: "/preview", params: { uri: asset.uri, name, type } });
+    router.push({ pathname: "/preview", params: { uri: asset.uri, name, type, source } });
   };
 
   const ensure = async (kind: "camera" | "gallery") => {
@@ -39,8 +39,12 @@ export default function Upload() {
 
   const takePhoto = async () => {
     if (!(await ensure("camera"))) return;
-    const res = await ImagePicker.launchCameraAsync({ mediaTypes: ["images"], quality: 0.6 });
-    if (!res.canceled && res.assets?.[0]) goPreview(res.assets[0]);
+    const res = await ImagePicker.launchCameraAsync({ mediaTypes: ["images"], quality: 0.5, exif: false });
+    if (res.canceled || !res.assets?.[0]) return;
+    // Pass the original capture straight into the shared Preview -> Analyze
+    // pipeline (tagged as camera so the pipeline skips the resize step that
+    // misbehaves on some camera images). Gallery behavior is unchanged.
+    goPreview({ ...res.assets[0], fileName: "camera.jpg", mimeType: "image/jpeg" }, "camera");
   };
 
   const pickGallery = async () => {

@@ -9,6 +9,8 @@ import os
 import re
 import uuid
 
+import asyncio
+
 from emergentintegrations.llm.chat import ImageContent, LlmChat, UserMessage
 
 logger = logging.getLogger("waste2earn.llm")
@@ -51,6 +53,8 @@ def _parse(raw: str) -> dict:
 
 
 class WasteAnalyzer:
+    PROVIDER_TIMEOUT = 22  # seconds per provider; keeps us under ingress limits
+
     async def _call(self, provider: str, model: str, image_base64: str) -> dict:
         chat = LlmChat(
             api_key=EMERGENT_LLM_KEY,
@@ -58,7 +62,7 @@ class WasteAnalyzer:
             system_message=SYSTEM_MSG,
         ).with_model(provider, model)
         msg = UserMessage(text=PROMPT, file_contents=[ImageContent(image_base64=image_base64)])
-        raw = await chat.send_message(msg)
+        raw = await asyncio.wait_for(chat.send_message(msg), timeout=self.PROVIDER_TIMEOUT)
         return _parse(raw)
 
     async def analyze(self, image_base64: str, test_mode: str = None) -> dict:

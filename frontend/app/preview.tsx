@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { Image } from "expo-image";
+import * as ImageManipulator from "expo-image-manipulator";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -17,11 +18,29 @@ export default function Preview() {
   const router = useRouter();
   const qc = useQueryClient();
   const { show } = useToast();
-  const { uri, name, type } = useLocalSearchParams<{ uri: string; name: string; type: string }>();
+  const { uri, source } = useLocalSearchParams<{ uri: string; name: string; type: string; source?: string }>();
 
   const analyze = useMutation({
     mutationFn: async () => {
-      const form = await buildImageForm(uri!, name || "waste.jpg", type || "image/jpeg");
+      // Gallery images are resized/compressed for speed. Camera images skip this
+      // step because the manipulator can emit a broken/empty file for some
+      // device camera captures (blank preview + failed analyze); the camera
+      // capture is already JPEG-compressed at source and the backend has a
+      // per-provider timeout + fallback to handle larger payloads.
+      let sendUri = uri!;
+      if (source !== "camera") {
+        try {
+          const m = await ImageManipulator.manipulateAsync(
+            uri!,
+            [{ resize: { width: 1024 } }],
+            { compress: 0.6, format: ImageManipulator.SaveFormat.JPEG },
+          );
+          if (m?.uri) sendUri = m.uri;
+        } catch {
+          // fall back to the original image if manipulation is unavailable
+        }
+      }
+      const form = await buildImageForm(sendUri, "waste.jpg", "image/jpeg");
       return api("/api/scans/analyze", { form });
     },
     onSuccess: (res: any) => {

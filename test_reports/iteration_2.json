@@ -1,0 +1,32 @@
+{
+  "summary": "Regression test for the 'Analyze -> failed' bug fix. Backend: 11/11 pytest cases PASS via /app/backend/tests/test_analyze_bugfix.py — real-image JPEG bottle x3 (1.75s / 2.05s / 2.17s, provider=openai:gpt-5.4, total_value_inr>0, status=analyzed), real-image PNG (1.99s, ok=true), LARGE 1.8MB cardboard JPEG (3.69s, ok=true, no hang), 506KB can JPEG (2.68s), provider fallback (test_mode=quota) confirmed switching to gemini:gemini-3-flash-preview in 4.47s, negatives (blank/unsupported/invalid .gif/.pdf) return correct HTTP 200 ok=false or HTTP 400 with 'Supported formats' message. All analyze latencies well under the 30s timeout. Frontend E2E (390x844 mobile web viewport): dev_token auto-login -> Home dashboard -> Upload tab -> 'Choose from Gallery' -> selected /tmp/bottle.jpg -> Preview screen -> tapped 'Analyze' -> navigated to Analysis Result screen showing 'reusable metal bottle', Confidence 86%, 0.28 kg, ₹11.20, 'Add to Wallet (Pending)' button — NO 'failed' toast. Loading state on Analyze verified (button text switched, disabled during pending). Cosmetic RN-web warning ('shadow* deprecated -> use boxShadow') still present, non-blocking.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [],
+    "react_native_issues": [
+      {"component": "shadow* style props", "issue": "React Native Web deprecation warning still present: 'shadow*' style props are deprecated. Use 'boxShadow'. Non-blocking — carried over from iteration_1."}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_analyze_bugfix.py",
+    "/app/test_reports/pytest/analyze_bugfix.xml"
+  ],
+  "action_items": [
+    "(Optional cosmetic) Migrate remaining shadow* StyleSheet props to boxShadow across UI components to remove RN-web deprecation warnings."
+  ],
+  "critical_code_review_comments": [
+    "llm_analyzer.WasteAnalyzer.PROVIDER_TIMEOUT=22s is a per-provider budget; combined worst case (primary+fallback) is ~44s which is above typical ingress read-timeouts. Consider a tighter primary timeout (e.g., 15s) so a hung primary + fallback still fits inside a 30s client budget.",
+    "test_mode form field on /api/scans/analyze is a production-exposed harness; ensure it is disabled/guarded before public production release."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_analyze_bugfix.py (created)"
+  ],
+  "success_rate": {"backend": "100% (11/11)", "frontend": "100% of the analyze user-flow"},
+  "seed_data_creation": "None. Used demo dev-login account + real Unsplash JPEG/PNG images downloaded to /tmp (bottle.jpg 14KB, bottle.png 55KB, cardboard.jpg 1.8MB, can2.jpg 506KB).",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Analyze bug fix verified end-to-end. Real images: primary GPT-5.4 responds in ~2-4s even for 1.8MB JPEGs; fallback path (test_mode=quota) responds via gemini:gemini-3-flash-preview in ~4-5s. Frontend Upload flow does client-side resize+compress via expo-image-manipulator to max width 1024 JPEG before POST /api/scans/analyze. Auth: POST /api/auth/dev-login (no body) -> session_token, then /?dev_token=... for web auto-login.",
+  "rca_of_issue": "Original bug: 'Analyze -> failed' toast after gallery upload was caused by the primary vision model (GPT-5.4) occasionally hanging on large gallery images with no per-provider timeout, so the client eventually errored out. Fix (verified): (1) llm_analyzer wraps each provider call in asyncio.wait_for(timeout=22s) so a slow/hung primary now cleanly fails and falls back to Gemini instead of hanging. (2) preview.tsx resizes/compresses the picked image to max width 1024 JPEG (compress 0.6) via expo-image-manipulator before upload, so payloads are small and consistent (image/jpeg). Reproduction now no longer possible: even a 1.8MB cardboard JPEG (unresized on backend side, since resize is client-side) completes via primary in ~3.7s; provider fallback still works when primary is forced to fail."
+}
