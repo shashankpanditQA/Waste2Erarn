@@ -24,7 +24,13 @@ Create `backend/.env` with the required database settings:
 ```env
 MONGO_URL=mongodb://localhost:27017
 DB_NAME=waste2earn
+GEMINI_API_KEY=your_gemini_api_key
 ```
+
+Waste image recognition uses Google Gemini (`gemini-2.5-flash`) through the
+official Google Gen AI SDK. Gemini offers limited free-tier API usage; quotas
+and regional availability are controlled by Google. The application does not
+send scan images to another LLM provider.
 
 Install the Python dependencies and start the API:
 

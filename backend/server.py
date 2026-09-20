@@ -133,7 +133,7 @@ async def analyze_scan(request: Request, file: UploadFile = File(...), test_mode
         raise HTTPException(status_code=400, detail="No waste detected. Please upload a clear waste image.")
 
     b64 = base64.b64encode(data).decode()
-    result = await analyzer.analyze(b64, test_mode)
+    result = await analyzer.analyze(b64, test_mode, ctype or "image/jpeg")
 
     if result.get("error"):
         raise HTTPException(status_code=503, detail="AI service is temporarily unavailable. Please try again.")
