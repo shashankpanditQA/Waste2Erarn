@@ -100,7 +100,7 @@ export function PrimaryButton({
 }
 
 // ---------------------------------------------------------------------------
-export function Card({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
+export function Card({ children, style, testID }: { children: React.ReactNode; style?: StyleProp<ViewStyle>; testID?: string }) {
   const s = useThemedStyles((c) => ({
     card: {
       backgroundColor: c.card,
@@ -115,7 +115,7 @@ export function Card({ children, style }: { children: React.ReactNode; style?: S
       elevation: 2,
     },
   }));
-  return <View style={[s.card, style]}>{children}</View>;
+  return <View testID={testID} style={[s.card, style]}>{children}</View>;
 }
 
 // ---------------------------------------------------------------------------

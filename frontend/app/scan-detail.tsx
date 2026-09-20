@@ -3,11 +3,11 @@ import { Image } from "expo-image";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useQuery } from "@tanstack/react-query";
-import { CheckCircle, Circle, Recycle } from "phosphor-react-native";
+import { CheckCircle, Recycle } from "phosphor-react-native";
 
 import { api, fileUrl } from "@/src/api/client";
 import { useAppTheme } from "@/src/theme/ThemeContext";
-import { RADIUS, SPACING } from "@/src/theme/palettes";
+import { SPACING } from "@/src/theme/palettes";
 import { AppText, Card, Loading, PrimaryButton, ScreenHeader, StatusBadge } from "@/src/ui/components";
 import { formatINR, formatKg } from "@/src/utils/format";
 
@@ -68,7 +68,11 @@ export default function ScanDetail() {
               const done = i <= currentIdx;
               return (
                 <View key={st} style={{ flexDirection: "row", alignItems: "center", gap: SPACING.md }}>
-                  {done ? <CheckCircle size={22} color={colors.success} weight="fill" /> : <Circle size={22} color={colors.muted} />}
+                  {done ? (
+                    <CheckCircle size={22} color={colors.success} weight="fill" />
+                  ) : (
+                    <View style={{ width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, borderColor: colors.muted }} />
+                  )}
                   <AppText color={done ? colors.textPrimary : colors.muted} weight={i === currentIdx ? "bold" : "regular"}>{STEP_LABELS[st]}</AppText>
                 </View>
               );

@@ -22,11 +22,11 @@ export default function TabsLayout() {
         tabBarLabelStyle: { fontSize: 11, fontWeight: "600" },
       }}
     >
-      <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: ({ color, focused }) => <House size={26} color={color} weight={focused ? "fill" : "regular"} /> }} />
-      <Tabs.Screen name="upload" options={{ title: "Upload", tabBarIcon: ({ color, focused }) => <UploadSimple size={26} color={color} weight={focused ? "fill" : "regular"} /> }} />
-      <Tabs.Screen name="rewards" options={{ title: "Rewards", tabBarIcon: ({ color, focused }) => <Gift size={26} color={color} weight={focused ? "fill" : "regular"} /> }} />
-      <Tabs.Screen name="recycler" options={{ title: "Recycler", tabBarIcon: ({ color, focused }) => <MapPin size={26} color={color} weight={focused ? "fill" : "regular"} /> }} />
-      <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, focused }) => <User size={26} color={color} weight={focused ? "fill" : "regular"} /> }} />
+      <Tabs.Screen name="index" options={{ title: "Home", tabBarIcon: ({ color, focused }) => <House size={26} color={String(color)} weight={focused ? "fill" : "regular"} /> }} />
+      <Tabs.Screen name="upload" options={{ title: "Upload", tabBarIcon: ({ color, focused }) => <UploadSimple size={26} color={String(color)} weight={focused ? "fill" : "regular"} /> }} />
+      <Tabs.Screen name="rewards" options={{ title: "Rewards", tabBarIcon: ({ color, focused }) => <Gift size={26} color={String(color)} weight={focused ? "fill" : "regular"} /> }} />
+      <Tabs.Screen name="recycler" options={{ title: "Recycler", tabBarIcon: ({ color, focused }) => <MapPin size={26} color={String(color)} weight={focused ? "fill" : "regular"} /> }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile", tabBarIcon: ({ color, focused }) => <User size={26} color={String(color)} weight={focused ? "fill" : "regular"} /> }} />
     </Tabs>
   );
 }

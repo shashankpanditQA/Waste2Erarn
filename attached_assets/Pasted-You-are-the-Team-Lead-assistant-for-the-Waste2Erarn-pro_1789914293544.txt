@@ -1,0 +1,391 @@
+You are the Team Lead assistant for the **Waste2Erarn** project setup.
+
+GitHub Repository:
+
+```bash
+https://github.com/shashankpanditQA/Waste2Erarn.git
+```
+
+Your responsibility is to prepare the repository for team development.
+
+Follow all steps carefully in order.
+
+---
+
+# Phase 1: Clone and Verify Repository
+
+## Step 1: Check workspace
+
+Run:
+
+```bash
+pwd
+ls
+```
+
+Check whether the repository already exists.
+
+If `Waste2Erarn` does not exist:
+
+```bash
+git clone https://github.com/shashankpanditQA/Waste2Erarn.git
+cd Waste2Erarn
+```
+
+If it already exists:
+
+```bash
+cd Waste2Erarn
+```
+
+Do not clone again.
+
+---
+
+## Step 2: Verify Git connection
+
+Run:
+
+```bash
+git remote -v
+git status
+git branch
+```
+
+Confirm the remote repository is:
+
+```
+https://github.com/shashankpanditQA/Waste2Erarn.git
+```
+
+---
+
+# Phase 2: Update Main Branch
+
+## Step 3: Fetch latest changes
+
+Run:
+
+```bash
+git fetch origin
+```
+
+## Step 4: Checkout main branch
+
+Run:
+
+```bash
+git checkout main
+```
+
+## Step 5: Pull latest code
+
+Run:
+
+```bash
+git pull origin main
+```
+
+Confirm main branch is up to date.
+
+---
+
+# Phase 3: Create UI Safety Checkpoint
+
+## Step 6: Create Git tag
+
+Before creating the tag, check if it already exists:
+
+```bash
+git tag
+```
+
+If it does not exist:
+
+```bash
+git tag ui-complete-v1
+git push origin ui-complete-v1
+```
+
+Purpose:
+Create a restore point for the completed UI.
+
+---
+
+# Phase 4: Create Develop Branch
+
+## Step 7: Create develop branch
+
+Check if develop exists:
+
+```bash
+git branch -a
+```
+
+If develop does not exist:
+
+```bash
+git checkout -b develop
+git push -u origin develop
+```
+
+If develop already exists:
+
+```bash
+git checkout develop
+git pull origin develop
+```
+
+---
+
+# Phase 5: Protect Secrets
+
+## Step 8: Update .gitignore
+
+Create `.gitignore` if missing.
+
+Add:
+
+```text
+.env
+.env.local
+*.key
+```
+
+Do not duplicate existing entries.
+
+---
+
+## Step 9: Create .env.example
+
+Create:
+
+```
+.env.example
+```
+
+Add only secret names with empty values:
+
+```text
+SUPABASE_URL=
+
+SUPABASE_ANON_KEY=
+
+GEMINI_API_KEY=
+
+GEOAPIFY_API_KEY=
+```
+
+Important:
+
+* Never add real API keys.
+* Never commit `.env`.
+
+---
+
+# Phase 6: Commit Configuration Changes
+
+## Step 10: Commit and push
+
+Run:
+
+```bash
+git add .gitignore .env.example
+
+git commit -m "chore: add gitignore and env example"
+
+git push origin develop
+```
+
+If there are no changes, skip commit.
+
+---
+
+# Phase 7: Create Feature Branches
+
+All branches must start from `develop`.
+
+Run:
+
+```bash
+git checkout develop
+git pull origin develop
+```
+
+Create these branches one by one.
+
+## Supabase Backend
+
+```bash
+git checkout -b feature/supabase-backend
+git push -u origin feature/supabase-backend
+git checkout develop
+```
+
+## Gemini AI
+
+```bash
+git checkout -b feature/gemini-ai
+git push -u origin feature/gemini-ai
+git checkout develop
+```
+
+## Geoapify
+
+```bash
+git checkout -b feature/geoapify
+git push -u origin feature/geoapify
+git checkout develop
+```
+
+## QR Scanner
+
+```bash
+git checkout -b feature/qr-scanner
+git push -u origin feature/qr-scanner
+git checkout develop
+```
+
+## QR Verification
+
+```bash
+git checkout -b feature/qr-verification
+git push -u origin feature/qr-verification
+git checkout develop
+```
+
+## Integration Wallet
+
+```bash
+git checkout -b feature/integration-wallet
+git push -u origin feature/integration-wallet
+git checkout develop
+```
+
+## Testing QA
+
+```bash
+git checkout -b feature/testing-qa
+git push -u origin feature/testing-qa
+git checkout develop
+```
+
+---
+
+# Phase 8: Create Architecture Documentation
+
+Create:
+
+```
+docs/architecture.md
+```
+
+Content:
+
+```markdown
+# Waste2Erarn Architecture
+
+## App Type
+
+Expo / Vite
+
+## Secret Prefix
+
+EXPO_PUBLIC_ / VITE_
+
+## Gemini + Geoapify Integration
+
+Server route inside Replit (recommended)
+
+```
+
+Commit and push:
+
+```bash
+git add docs/architecture.md
+
+git commit -m "docs: add architecture documentation"
+
+git push origin develop
+```
+
+---
+
+# Phase 9: Final Verification
+
+Run:
+
+```bash
+git branch -a
+
+git tag
+
+git status
+
+git log -1
+```
+
+Provide a final report:
+
+## Repository Status
+
+* Repository cloned/verified
+* Main updated
+* Tag created
+* Develop branch created
+* Feature branches created
+
+## Files Created
+
+* .gitignore
+* .env.example
+* docs/architecture.md
+
+## Manual Actions Remaining
+
+Do not perform these automatically:
+
+1. Add teammates in GitHub:
+
+GitHub → Repository → Settings → Collaborators → Add people
+
+2. Protect main branch:
+
+GitHub → Settings → Branches → Add rule:
+
+"Require a pull request before merging"
+
+3. Share API keys privately:
+
+Supabase:
+
+* Kishor
+* Shiva Prakash
+* Pawan
+* Ashwamegh
+
+Gemini:
+
+* Shivakumar
+* Pawan
+* Ashwamegh
+
+Geoapify:
+
+* Shashank
+* Pawan
+* Ashwamegh
+
+4. Send team message:
+
+"Branches are ready. Start with Sections 6 and 7 of the guide."
+
+---
+
+Important Rules:
+
+* Never commit real secrets.
+* Never modify application code.
+* Do not delete existing branches.
+* If a branch/tag already exists, skip creation.
+* Stop and explain any error before continuing.
